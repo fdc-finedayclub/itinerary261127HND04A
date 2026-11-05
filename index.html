@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>東京四日專屬訂製行程</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F6F0;
+      --card-bg: #FFFFFF;
+      --primary: #2C352E;
+      --accent: #8E7958;
+      --accent-light: #F2ECE1;
+      --text: #2B2B2B;
+      --text-muted: #6E6E6E;
+      --line: #E5DFC5;
+      --border: #E8E5DD;
+      --tag-bg: #EAE5D9;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px 50px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .header-sub {
+      font-family: 'Noto Serif TC', serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .header-meta {
+      display: inline-flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .day-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border);
+      margin-bottom: 35px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .day-card:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    .day-header {
+      background: #FAFAF7;
+      padding: 22px 30px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .day-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .day-badge {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .day-date {
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .day-route {
+      background: var(--tag-bg);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .day-content {
+      padding: 30px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+    }
+
+    .timeline-item.highlight::before {
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .timeline-time {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-desc {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .timeline-desc .note {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .timeline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .timeline-link:hover {
+      opacity: 0.85;
+    }
+
+    .hotel-info {
+      margin-top: 25px;
+      padding: 16px 20px;
+      background: #F7F5EE;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .hotel-label {
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .hotel-name {
+      font-weight: 500;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    @media print {
+      body {
+        background: #FFF;
+        padding: 0;
+      }
+      .day-card {
+        box-shadow: none;
+        border: 1px solid #CCC;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <div class="header-sub">Exclusive Journey</div>
+    <h1>東京四日專屬訂製行程</h1>
+    <div class="header-meta">
+      <span>行程日期：2026 年 11 月 27 日 – 11 月 30 日</span>
+      <span>目的地：東京 · 箱根 · 橫濱</span>
+    </div>
+  </header>
+
+  <!-- Day 1 -->
+  <section class="day-card">
+    <div class="day-header">
+      <div class="day-title-group">
+        <span class="day-badge">Day 1</span>
+        <span class="day-date">2026 年 11 月 27 日（週五）</span>
+      </div>
+      <div class="day-route">羽田抵達 ➔ 飯店入住與晚間餐敘</div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">15:10</div>
+          <div class="timeline-desc">抵達 羽田國際機場（HND）</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:40</div>
+          <div class="timeline-desc">專車由羽田機場出發</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">16:20</div>
+          <div class="timeline-desc">抵達飯店辦理入住手續並稍作休憩</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">晚間</div>
+          <div class="timeline-desc">餐敘活動</div>
+        </div>
+      </div>
+
+      <div class="hotel-info">
+        <span class="hotel-label">住宿安排</span>
+        <span class="hotel-name">東京全日空洲際酒店（ANA InterContinental Tokyo）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 2 -->
+  <section class="day-card">
+    <div class="day-header">
+      <div class="day-title-group">
+        <span class="day-badge">Day 2</span>
+        <span class="day-date">2026 年 11 月 28 日（週六）</span>
+      </div>
+      <div class="day-route">赤坂迎賓館 ➔ 青山 Just ear 客製 ➔ 神保町與神社參訪</div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">09:45</div>
+          <div class="timeline-desc">自飯店出發</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-desc">參觀 迎賓館赤坂離宮</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:45</div>
+          <div class="timeline-desc">精緻午餐（紀尾井町或赤坂一帶精選料理）</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">13:50</div>
+          <div class="timeline-desc">
+            抵達 東京ヒアリングケアセンター青山本店
+            <span class="note">・14:00 – 15:15 進行 Sony Just ear 專屬客製化耳模製作與諮詢</span>
+            <span class="note">預訂資訊<br>姓名：Sammi Huang<br>電話：08027874800<br>Email：lizzaa7711@gmail.com</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:45</div>
+          <div class="timeline-desc">神田明神參拜與神保町古書街文化散策</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-desc">參訪 赤坂冰川神社</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:00</div>
+          <div class="timeline-desc">返回飯店休息</div>
+        </div>
+      </div>
+
+      <div class="hotel-info">
+        <span class="hotel-label">住宿安排</span>
+        <span class="hotel-name">東京全日空洲際酒店（ANA InterContinental Tokyo）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 3 -->
+  <section class="day-card">
+    <div class="day-header">
+      <div class="day-title-group">
+        <span class="day-badge">Day 3</span>
+        <span class="day-date">2026 年 11 月 29 日（週日）</span>
+      </div>
+      <div class="day-route">上野藝文巡禮 ➔ 根津古韻 ➔ 江戶歷史探訪</div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-desc">自飯店出發 ➔ 前往東京藝術大學</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:30</div>
+          <div class="timeline-desc">於上野公園周邊享用午餐</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-desc">參觀 根津神社（乙女稻荷千本鳥居）</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-desc">參觀 江戶東京博物館</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">17:30</div>
+          <div class="timeline-desc">晚間精緻饗宴</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-desc">返回飯店休息</div>
+        </div>
+      </div>
+
+      <div class="hotel-info">
+        <span class="hotel-label">住宿安排</span>
+        <span class="hotel-name">東京全日空洲際酒店（ANA InterContinental Tokyo）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 4 -->
+  <section class="day-card">
+    <div class="day-header">
+      <div class="day-title-group">
+        <span class="day-badge">Day 4</span>
+        <span class="day-date">2026 年 11 月 30 日（週一）</span>
+      </div>
+      <div class="day-route">東京 ➔ 箱根 POLA 美術館 ➔ 橫濱</div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-desc">飯店退房並出發 ➔ 前往箱根</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">11:30</div>
+          <div class="timeline-desc">
+            抵達 箱根 POLA 美術館參觀
+            <a href="https://www.etix.com/kketix/servlet/PasswordPrintOrder?userID=38164346&password=61014914" target="_blank" rel="noopener noreferrer" class="timeline-link">
+              🎫 檢視 POLA 美術館門票預訂憑證
+            </a>
+          </div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-desc">推薦於 POLA 美術館景觀餐廳享用午餐</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-desc">自箱根啟程 ➔ 前往橫濱</div>
+        </div>
+        <div class="timeline-item highlight">
+          <div class="timeline-time">16:15</div>
+          <div class="timeline-desc">抵達 橫濱洲際渡假飯店，辦理入住手續</div>
+        </div>
+      </div>
+
+      <div class="hotel-info">
+        <span class="hotel-label">住宿安排</span>
+        <span class="hotel-name">橫濱洲際渡假飯店（InterContinental Yokohama Grand）</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    FINE TRAVEL EXPERIENCE · TAILOR-MADE ITINERARY
+  </footer>
+
+</div>
+
+</body>
+</html>
