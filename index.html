@@ -218,6 +218,42 @@
       opacity: 0.85;
     }
 
+    .booking {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: #F7F5EE;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 380px;
+    }
+
+    .booking-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .booking-row {
+      display: flex;
+      gap: 12px;
+      line-height: 1.8;
+    }
+
+    .booking-label {
+      min-width: 64px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .booking-row.booking-time .booking-value {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
     .hotel-info {
       margin-top: 25px;
       padding: 16px 20px;
@@ -341,14 +377,26 @@
           <div class="timeline-desc">
             抵達 東京ヒアリングケアセンター青山本店
             <span class="note">・14:00 – 15:15 進行 Sony Just ear 專屬客製化耳模製作與諮詢</span>
-            <span class="note">預訂資訊<br>姓名：Sammi Huang<br>電話：08027874800<br>Email：lizzaa7711@gmail.com<br>預約時段：14:00</span>
+            <div class="booking">
+              <div class="booking-title">預訂資訊</div>
+              <div class="booking-row booking-time"><span class="booking-label">預約時段</span><span class="booking-value">14:00</span></div>
+              <div class="booking-row"><span class="booking-label">姓名</span><span>Sammi Huang</span></div>
+              <div class="booking-row"><span class="booking-label">電話</span><span>08027874800</span></div>
+              <div class="booking-row"><span class="booking-label">Email</span><span>lizzaa7711@gmail.com</span></div>
+            </div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">16:00</div>
           <div class="timeline-desc">
             櫻井焙茶研究所
-            <span class="note">預訂資訊<br>姓名：Huang, Sammi<br>確認號碼：YAADK3<br>座位使用時間：90 分鐘<br>預約時段：16:00</span>
+            <div class="booking">
+              <div class="booking-title">預訂資訊</div>
+              <div class="booking-row booking-time"><span class="booking-label">預約時段</span><span class="booking-value">16:00</span></div>
+              <div class="booking-row"><span class="booking-label">姓名</span><span>Huang, Sammi</span></div>
+              <div class="booking-row"><span class="booking-label">確認號碼</span><span>YAADK3</span></div>
+              <div class="booking-row"><span class="booking-label">使用時間</span><span>90 分鐘</span></div>
+            </div>
           </div>
         </div>
         <div class="timeline-item">
@@ -358,6 +406,14 @@
             <a href="https://art-ap.passes.jp/user/orders/7f862b7e-32de-4bbf-b6a9-d558fe32118d/?utm_source=email&utm_medium=purchase" target="_blank" rel="noopener noreferrer" class="timeline-link">
               🎫 檢視皇居三之丸尚藏館票券
             </a>
+            <div class="booking">
+              <div class="booking-title">預訂資訊</div>
+              <div class="booking-row booking-time"><span class="booking-label">預約時段</span><span class="booking-value">18:00 – 18:30</span></div>
+              <div class="booking-row"><span class="booking-label">展覽名稱</span><span>皇室の至宝―美いづるところ</span></div>
+              <div class="booking-row"><span class="booking-label">預訂編號</span><span>XKP9-L75E</span></div>
+              <div class="booking-row"><span class="booking-label">入場方式</span><span>請出示電子票 QR Code</span></div>
+              <div class="booking-row"><span class="booking-label">貼心提醒</span><span>請於 18:00–18:30 時段內入場，館內無等候區，勿提早抵達；遲到可能無法入場。當天離館後無法再次入場。</span></div>
+            </div>
           </div>
         </div>
         <div class="timeline-item">
@@ -433,8 +489,14 @@
           <div class="timeline-desc">
             抵達 箱根 POLA 美術館參觀
             <a href="https://www.etix.com/kketix/servlet/PasswordPrintOrder?userID=38164346&password=61014914" target="_blank" rel="noopener noreferrer" class="timeline-link">
-              🎫 檢視 POLA 美術館門票預訂憑證
+              🎫 檢視 POLA 美術館門票
             </a>
+            <div class="booking">
+              <div class="booking-title">預訂資訊</div>
+              <div class="booking-row"><span class="booking-label">展覽資訊</span><span>The New Vision: Monet and the Contemporary Gaze</span></div>
+              <div class="booking-row"><span class="booking-label">入場方式</span><span>請出示電子票 QR Code</span></div>
+              <div class="booking-row"><span class="booking-label">確認碼</span><span>38164346</span></div>
+            </div>
           </div>
         </div>
         <div class="timeline-item highlight">
